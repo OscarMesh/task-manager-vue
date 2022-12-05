@@ -1,7 +1,13 @@
 <template>
   <div class="container">
-    <Header title="Oscar’s Task Manager" />
-    <AddTask color="#ffa309" />
+    <Header
+      @toggle-add-task="toggleAddTask"
+      title="Oscar’s Task Manager"
+      :showAddTask="showAddTask"
+    />
+    <div v-show="showAddTask">
+      <AddTask @add-task="addTask" color="#ffa309" />
+    </div>
     <Tasks
       @delete-task="deleteTask"
       :tasks="tasks"
@@ -25,9 +31,16 @@ export default {
   data() {
     return {
       tasks: [],
+      showAddTask: false,
     };
   },
   methods: {
+    toggleAddTask() {
+      this.showAddTask = !this.showAddTask;
+    },
+    addTask(task) {
+      this.tasks = [...this.tasks, task];
+    },
     deleteTask(id) {
       if (confirm("Are you sure?")) {
         this.tasks = this.tasks.filter((task) => task.id !== id);
@@ -85,7 +98,6 @@ body {
   background-size: auto;
   background-position: center;
   /* back */
-
   background-image: url("https://images.unsplash.com/photo-1636632518466-f7ffba74f0fe?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=407&q=80");
 }
 
@@ -106,7 +118,7 @@ body {
   color: #fff;
   border: none;
   padding: 10px;
-  margin: 5px;
+  /* margin: 5px; */
   border-radius: 5px;
   cursor: pointer;
   text-decoration: none;

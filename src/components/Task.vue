@@ -13,7 +13,7 @@
     </h3>
     <p>
       {{ task.day }}
-      <Icon icon="material-symbols:edit-square-outline" class="edit" />
+      <!-- <Icon icon="material-symbols:edit-square-outline" class="edit" /> -->
     </p>
   </div>
 </template>
