@@ -1,24 +1,48 @@
 <template>
   <div class="container">
     <Header title="Oscar’s Task Manager" />
-    <Tasks :tasks="tasks" />
+    <AddTask color="#ffa309" />
+    <Tasks
+      @delete-task="deleteTask"
+      :tasks="tasks"
+      @toggle-reminder="toggleReminder"
+    />
   </div>
 </template>
 
 <script>
 import Header from "./components/Header.vue";
 import Tasks from "./components/Tasks.vue";
+import AddTask from "./components/AddTask.vue";
 
 export default {
   name: "App",
   components: {
     Header,
     Tasks,
+    AddTask,
   },
   data() {
     return {
       tasks: [],
     };
+  },
+  methods: {
+    deleteTask(id) {
+      if (confirm("Are you sure?")) {
+        this.tasks = this.tasks.filter((task) => task.id !== id);
+      }
+    },
+    toggleReminder(id) {
+      this.tasks = this.tasks.map((task) =>
+        task.id === id
+          ? {
+              ...task,
+              reminder: !task.reminder,
+            }
+          : task
+      );
+    },
   },
   created() {
     this.tasks = [

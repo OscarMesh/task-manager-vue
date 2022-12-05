@@ -1,8 +1,15 @@
 <template>
-  <div class="task">
+  <div
+    @dblclick="$emit('toggle-reminder', task.id)"
+    :class="[task.reminder ? 'reminder' : '', 'task']"
+  >
     <h3>
       {{ task.text }}
-      <Icon icon="material-symbols:delete-outline" class="del" />
+      <Icon
+        @click="$emit('delete-task', task.id)"
+        icon="material-symbols:delete-outline"
+        class="del"
+      />
     </h3>
     <p>
       {{ task.day }}
