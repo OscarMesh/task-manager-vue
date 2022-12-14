@@ -14,8 +14,9 @@
       />
     </div>
     <div class="form-control form-control-check">
-      <label>Add Reminder</label>
+      <label>Mark Completed</label>
       <input type="checkbox" v-model="reminder" name="reminder" />
+      <p>double-click to mark as completed</p>
     </div>
 
     <input

@@ -2,7 +2,7 @@
   <h3>Tasks</h3>
   <div :key="task.id" v-for="task in tasks">
     <Task
-      @toggle-reminder="$emit('toggle-reminder', task.id)"
+      @toggle-completed="$emit('toggle-completed', task.id)"
       @delete-task="$emit('delete-task', task.id)"
       :task="task"
     />
@@ -19,6 +19,6 @@ export default {
   components: {
     Task,
   },
-  emits: ["delete-task", "toggle-reminder"],
+  emits: ["delete-task", "toggle-completed"],
 };
 </script>

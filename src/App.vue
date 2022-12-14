@@ -11,7 +11,7 @@
     <Tasks
       @delete-task="deleteTask"
       :tasks="tasks"
-      @toggle-reminder="toggleReminder"
+      @toggle-completed="toggleCompleted"
     />
   </div>
 </template>
@@ -46,12 +46,12 @@ export default {
         this.tasks = this.tasks.filter((task) => task.id !== id);
       }
     },
-    toggleReminder(id) {
+    toggleCompleted(id) {
       this.tasks = this.tasks.map((task) =>
         task.id === id
           ? {
               ...task,
-              reminder: !task.reminder,
+              completed: !task.completed,
             }
           : task
       );
@@ -63,19 +63,19 @@ export default {
         id: 1,
         text: "Doctor's Appointment",
         day: "Feb 5th at 2:30pm",
-        reminder: true,
+        comleted: true,
       },
       {
         id: 2,
         text: "Meeting at School",
         day: "Feb 6th at 1:30pm",
-        reminder: true,
+        completed: true,
       },
       {
         id: 3,
         text: "Food Shopping",
         day: "Feb 5th at 2:30pm",
-        reminder: false,
+        completed: false,
       },
     ];
   },

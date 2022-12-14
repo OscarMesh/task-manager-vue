@@ -1,7 +1,7 @@
 <template>
   <div
-    @dblclick="$emit('toggle-reminder', task.id)"
-    :class="[task.reminder ? 'reminder' : '', 'task']"
+    @dblclick="$emit('toggle-completed', task.id)"
+    :class="[task.completed ? 'completed' : '', 'task']"
   >
     <h3>
       {{ task.text }}
@@ -15,6 +15,7 @@
       {{ task.day }}
       <!-- <Icon icon="material-symbols:edit-square-outline" class="edit" /> -->
     </p>
+    <em>double-click to mark as completed</em>
   </div>
 </template>
 
@@ -47,7 +48,7 @@ export default {
   cursor: pointer;
 }
 
-.task.reminder {
+.task.completed {
   border-left: 4px solid #ffa309;
 }
 
